@@ -70,12 +70,14 @@ cp .env.example .env
 
 Ejemplo de configuración:
 
-PORT=3000
-HOST=127.0.0.1
-MONGODB_URI=your_mongodb_connection_string
-DB_NAME=nodepop
-SESSION_SECRET=your_secure_secret
+---
+- PORT=3000
+- HOST=127.0.0.1
+- MONGODB_URI=your_mongodb_connection_string
+- DB_NAME=nodepop
+- SESSION_SECRET=your_secure_secret
 
+---
 Inicializar base de datos:
 ```bash
 npm run initDB
