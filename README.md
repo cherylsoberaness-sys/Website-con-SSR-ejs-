@@ -3,7 +3,7 @@
 ![Vista de la app](./assets/Screenshot.png)
 
 
-Desarrollé una aplicación backend con interfaz gráfica para comprender a profundidad la comunicación cliente-servidor, el funcionamiento de HTTP y la construcción de APIs siguiendo el patrón MVC (Modelo-Vista-Controlador).
+Desarrollo de aplicación backend con interfaz gráfica para comprender a profundidad la comunicación cliente-servidor, el funcionamiento de HTTP y la construcción de APIs siguiendo el patrón MVC (Modelo-Vista-Controlador).
 
 La aplicación permite gestionar productos a través de endpoints que soportan filtrado, ordenamiento y paginación, manteniendo el estado de la consulta directamente en la URL.
 
