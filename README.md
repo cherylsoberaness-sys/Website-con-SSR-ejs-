@@ -56,11 +56,11 @@ git clone <URL_DEL_REPOSITORIO>
 cd <NOMBRE_DEL_PROYECTO>
 
 ## 2. Instalar dependencias
-``bash
+```bash
 npm install
 
 ## 3. Configurar variables de entorno: crea un archivo .env en la raíz del proyecto basado en .env.example:
-``bash
+```bash
 cp .env.example .env
 
 ## Ejemplo de configuración:
@@ -75,11 +75,11 @@ DB_NAME=nodepop
 SESSION_SECRET=your_secure_secret
 
 ## 4. Inicializar base de datos
-``bash
+```bash
 npm run initDB
 
 ## 5. Ejecutar el proyecto
-``bash
+```bash
 npm run dev
 
 ## 6. Abrir en el navegador
