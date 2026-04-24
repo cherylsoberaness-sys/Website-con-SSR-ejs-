@@ -1,0 +1,86 @@
+<%- include('partials/page-start.html') %>
+    
+    <div class="container mt-4">
+        <h1>Lista de productos</h1>
+        <%- include('partials/components/filter-components.html') %>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/products?tag=tech">Tech</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products?tag=work">Work</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products?tag=productivity">Productivity</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products?tag=comfort">Comfort</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products?tag=accessories">Accessories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products?tag=gaming">Gaming</a>
+            </li>
+        </ul>
+        <% if (products.length > 0) { %>
+            <ul class="list-group">
+                <% products.forEach((product, index) => { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold"><%= product.name %></div>
+                            $<%= product.price %> <br>
+                            <small>Product Id: <%= product._id %></small><br>
+                            <small>Owner Id: <%= product.owner %></small><br>
+                            <% if (product.tags && product.tags.length > 0) { %>
+                                <small>Tags:
+                                    <% product.tags.forEach((tag) => { %>
+                                        <%-// include( 'partials/components/tags-component.html', { tag: tag } ) %>
+                                        <a href="/products?tag=<%= tag %>"><span class="badge text-bg-secondary"><%= tag  %></span></a> 
+                                    <% }) %>
+                                </small>
+                            <% } %>
+                        </div>
+                        <span class="badge text-bg-primary rounded-pill"><%= index + 1 %></span>
+                    </li>
+            
+            <% }) %>
+        <% } else { %>
+            <p>No hay productos disponibles.</p>
+        <% } %>
+        </ul>
+    </div>
+    <%
+        const tagQuery = tag ? '&tag=' + tag : '';
+        const nameQuery = name ? '&name=' + name : '';
+        const  priceQueryMin = priceMin ? '&priceMin=' + priceMin : '';
+        const priceQueryMax = priceMax ? '&priceMax=' + priceMax : '';
+        const sortQuery = sort ? '&sort=' + sort : '';
+
+    %>
+    <nav class="mt-3" aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <% if (page && page > 1) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/products?page=<%= page - 1 %>&limit=4<%=sortQuery%><%=nameQuery%><%=priceQueryMin%><%=priceQueryMax%><%=tagQuery%>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item page-link"><%= page  %></li>
+                <li class="page-item">
+                    <a class="page-link" href="/products?page=<%= page + 1 %>&limit=4<%=sortQuery%><%=nameQuery%><%=priceQueryMin%><%=priceQueryMax%><%=tagQuery%>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            <% } else { %>
+                <li class="page-item page-link">1</li>
+                <li class="page-item">         
+                    <a class="page-link" href="/products?page=2&limit=4<%=sortQuery%><%=nameQuery%><%=priceQueryMin%><%=priceQueryMax%><%=tagQuery%>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+
+<%- include('partials/page-end.html') %>

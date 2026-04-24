@@ -1,0 +1,29 @@
+{
+  "name": "nodepop",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Cheryl Soberanes",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch --env-file=.env src/bin/www.js",
+    "test:database": "node --env-file=.env src/lib/database.js",
+    "initDB": "node --env-file=.env src/scripts/seed-db.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "connect-mongo": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mongodb": "^7.1.1",
+    "mongoose": "^9.4.1",
+    "morgan": "^1.10.1"
+  }
+}
