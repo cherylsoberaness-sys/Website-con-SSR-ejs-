@@ -67,7 +67,7 @@ Configurar variables de entorno: crea un archivo .env en la raíz del proyecto b
 ```bash
 cp .env.example .env
 ```
----
+
 Ejemplo de configuración:
 
 PORT=3000
@@ -76,7 +76,6 @@ MONGODB_URI=your_mongodb_connection_string
 DB_NAME=nodepop
 SESSION_SECRET=your_secure_secret
 
----
 Inicializar base de datos:
 ```bash
 npm run initDB
