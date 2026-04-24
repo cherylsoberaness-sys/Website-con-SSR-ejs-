@@ -49,21 +49,21 @@ petición → middleware → rutas → controlador → repositorio (BD) → resp
 
 ## 🚀 Cómo ejecutar el proyecto
 
-### 1. Clonar el repositorio
+## 1. Clonar el repositorio
 
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd <NOMBRE_DEL_PROYECTO>
 
-### 2. Instalar dependencias
+## 2. Instalar dependencias
 ``bash
 npm install
 
-### 3. Configurar variables de entorno: crea un archivo .env en la raíz del proyecto basado en .env.example:
+## 3. Configurar variables de entorno: crea un archivo .env en la raíz del proyecto basado en .env.example:
 ``bash
 cp .env.example .env
 
-### Ejemplo de configuración:
+## Ejemplo de configuración:
 
 PORT=3000
 HOST=127.0.0.1
@@ -74,13 +74,13 @@ MONGODB_URI=your_mongodb_connection_string
 DB_NAME=nodepop
 SESSION_SECRET=your_secure_secret
 
-### 4. Inicializar base de datos
+## 4. Inicializar base de datos
 ``bash
 npm run initDB
 
-### 5. Ejecutar el proyecto
+## 5. Ejecutar el proyecto
 ``bash
 npm run dev
 
-### 6. Abrir en el navegador
+## 6. Abrir en el navegador
 http://127.0.0.1:3000
