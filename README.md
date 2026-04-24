@@ -1,6 +1,6 @@
 # APP Backend con interfaz gráfica
 
-![Vista de la app](./assets/screenshot.png)
+![Vista de la app](./assets/Screenshot.png)
 
 
 Desarrollé una aplicación backend con interfaz gráfica para comprender a profundidad la comunicación cliente-servidor, el funcionamiento de HTTP y la construcción de APIs siguiendo el patrón MVC (Modelo-Vista-Controlador).
