@@ -54,15 +54,17 @@ petición → middleware → rutas → controlador → repositorio (BD) → resp
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd <NOMBRE_DEL_PROYECTO>
-
+```
 ## 2. Instalar dependencias
 ```bash
 npm install
+```
 
 ## 3. Configurar variables de entorno: crea un archivo .env en la raíz del proyecto basado en .env.example:
 ```bash
 cp .env.example .env
-
+```
+---
 ## Ejemplo de configuración:
 
 PORT=3000
@@ -74,13 +76,15 @@ MONGODB_URI=your_mongodb_connection_string
 DB_NAME=nodepop
 SESSION_SECRET=your_secure_secret
 
+---
+
 ## 4. Inicializar base de datos
 ```bash
 npm run initDB
-
+```
 ## 5. Ejecutar el proyecto
 ```bash
 npm run dev
-
+```
 ## 6. Abrir en el navegador
 http://127.0.0.1:3000
