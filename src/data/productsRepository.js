@@ -31,3 +31,14 @@ export async function getProducts(userId, tag=null, limit=4, page=1,
     return await Product.find(filter).skip(skip).limit(limit).sort(sort);
 
 }
+
+
+export async function saveNewProduct(product) {
+    if(product.tags && !Array.isArray(product.tags)){
+        product.tags = [product.tags]
+    }
+
+    const newProduct = new Product(product);
+    await newProduct.save();
+    return newProduct;
+}

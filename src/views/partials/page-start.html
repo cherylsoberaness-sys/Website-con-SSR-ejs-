@@ -9,7 +9,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title><%= title %></title>
 </head>
-<nav class="navbar navbar-expand-lg bg-body-tertiary" bg-dark border-bottom border-body" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-4" bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Nodepop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
         <a class="nav-link active" aria-current="page" href="/">Home</a>
         <% if (session.userId) { %>
           <a class="nav-link" href="/products">Products</a>
-          <a class="nav-link" href="#">New product</a>
+          <a class="nav-link" href="/products/newproduct">New product</a>
           <a class="nav-link" href="/logout">logout</a>
         <% } else { %>
           <a class="nav-link" href="login">login</a>

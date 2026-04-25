@@ -1,0 +1,55 @@
+<%- include('partials/page-start.html') %>
+
+<form method="POST" action=""  class="row g-3" style="margin-bottom: 5 px;">
+    
+    <% if (errorMessage) { %>
+            <span><%= errorMessage %></span>
+    <% } %>
+    
+    <div class="">
+        <label for="" class="">Nombre de producto:</label>
+        <input type="text" class="form-control" name="name" placeholder="Bocinas Logitech" value="<%= values.name ?? '' %>">
+    </div>
+    <div class="d-flex gap-2" style="width: 200px">
+        <div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tags" value="gaming">
+                <label class="form-check-label">gaming</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tags" value="comfort">
+                <label class="form-check-label">comfort</label>
+            </div>
+        </div>
+        <div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tags" value="lyfestyle">
+                <label class="form-check-label">lyfestyle</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tags" value="work">
+                <label class="form-check-label">work</label>
+            </div>
+        </div>
+        <div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tags" value="tech">
+                <label class="form-check-label">tech</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="tags" value="productivity">
+                <label class="form-check-label">productivity</label>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <label for="" class="">Precio:</label>
+        <input type="" class="form-control" name="price" placeholder="$3000" value="<%= values.price ?? '' %>">
+  </div>
+  <div class="">
+    <button type="submit" class="btn btn-primary mb-3">Save</button>
+  </div>
+</form>
+
+<%- include('partials/page-end.html') %>
+
