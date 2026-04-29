@@ -30,8 +30,8 @@
                         <div class="ms-2 me-auto">
                             <div class="fw-bold"><%= product.name %></div>
                             $<%= product.price %> <br>
-                            <!--<small>Product Id: <%= product._id %></small><br>
-                            <small>Owner Id: <%= product.owner %></small><br>-->
+                            <a href="/products/<%=product._id%>"><small><%= product._id %></small><br></a>
+                            <!--<small>Owner Id: <%= product.owner %></small><br>-->
                             <% if (product.tags && product.tags.length > 0) { %>
                                 <small>
                                     <% product.tags.forEach((tag) => { %>

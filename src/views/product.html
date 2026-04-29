@@ -1,53 +1,58 @@
 <%- include('partials/page-start.html') %>
 
-<form method="POST" action=""  class="row g-3" style="margin-bottom: 5 px;">
+
+<h1><%= title %></h1>
+<% if (values._id) { %>
+    <span>Id del producto: <%= values._id %></span>
+<% } %>
+
+<form method="POST" action=""  class="row g-3" style="margin-bottom: 5 px" action="/products<%= values._id %>" >
     
     <% if (errorMessage) { %>
             <span><%= errorMessage %></span>
     <% } %>
-    
     <div class="">
         <label for="" class="">Nombre de producto:</label>
-        <input type="text" class="form-control" name="name" placeholder="Bocinas Logitech" value="<%= values.name ?? '' %>">
+        <input type="text" id="name" class="form-control" name="name" placeholder="Bocinas Logitech" value="<%= values.productName ?? '' %>">
     </div>
     <div class="d-flex gap-2" style="width: 200px">
         <div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" value="gaming">
-                <label class="form-check-label">gaming</label>
+                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="gaming" <%= values.tags && values.tags.includes('gaming') ? 'checked' : '' %> >
+                <label class="form-check-label">gaming</label>                                  
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" value="comfort">
+                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="comfort" <%= values.tags && values.tags.includes('comfort') ? 'checked' : '' %> >
                 <label class="form-check-label">comfort</label>
             </div>
         </div>
         <div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" value="lyfestyle">
+                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="lyfestyle" <%= values.tags && values.tags.includes('lyfestyle') ? 'checked' : '' %>>
                 <label class="form-check-label">lyfestyle</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" value="work">
+                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="work" <%= values.tags && values.tags.includes('work') ? 'checked' : '' %>>
                 <label class="form-check-label">work</label>
             </div>
         </div>
         <div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" value="tech">
+                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="tech" <%= values.tags && values.tags.includes('tech') ? 'checked' : '' %>>
                 <label class="form-check-label">tech</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" value="productivity">
+                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="productivity" <%= values.tags && values.tags.includes('productivity') ? 'checked' : '' %>>
                 <label class="form-check-label">productivity</label>
             </div>
         </div>
     </div>
     <div class="">
         <label for="" class="">Precio:</label>
-        <input type="" class="form-control" name="price" placeholder="$3000" value="<%= values.price ?? '' %>">
+        <input type="" class="form-control" name="price" id="price" placeholder="$3000" value="<%= values.price ?? '' %>">
   </div>
   <div class="">
-    <button type="submit" class="btn btn-primary mb-3">Save</button>
+    <button type="submit" class="btn btn-primary mb-3">Save product</button>
   </div>
 </form>
 

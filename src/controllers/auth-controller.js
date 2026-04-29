@@ -9,9 +9,7 @@ export async function loginPageController(req, res, next) {
 } 
 
 export async function loginActionController (req, res, next) {
-    console.log(req.query);
     const redirectUrl = req.query.redirect;
-
     if(!req.body.email || req.body.email === '' ||
         !req.body.password || req.body.password === '') {
             const errorMessage = "el usuario y la contraseña son obligatorios"
@@ -24,26 +22,31 @@ export async function loginActionController (req, res, next) {
             });
             return;
     }
+    try {
+        const user = await User.findOne({email: req.body.email,})
+        .select('+password');
 
-    const user = await User.findOne({email: req.body.email,})
-    .select('+password');
-
-  
-    if(!user || !(await user.comparePassword(req.body.password))) {
-        const errorMessage = "Credenciales inválidas";
-        res.render('login.html', {
-            title: "Iniciar Sesion",
-            errorMessage,
-            values: {
-                email: req.body.email
-            }
-        });
-        return;
-    }
-
-    req.session.userId = user.id;
     
-    res.redirect(redirectUrl || '/');
+        if(!user || !(await user.comparePassword(req.body.password))) {
+            const errorMessage = "Credenciales inválidas";
+            res.render('login.html', {
+                title: "Iniciar Sesion",
+                errorMessage,
+                values: {
+                    email: req.body.email
+                }
+            });
+            return;
+        }
+
+        req.session.userId = user.id;
+        
+        res.redirect(redirectUrl || '/');
+
+    } catch (err) {
+        console.error('Longin Error:', err);
+        next(err);
+    }
     
 }
 

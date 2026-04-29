@@ -42,3 +42,9 @@ export async function saveNewProduct(product) {
     await newProduct.save();
     return newProduct;
 }
+
+
+export async function getProduct(productId) {
+    const product = Product.findById(productId);
+    return product;
+}

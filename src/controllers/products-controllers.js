@@ -1,4 +1,4 @@
-import { getProducts, saveNewProduct } from '../data/productsRepository.js';
+import { getProducts, saveNewProduct, getProduct } from '../data/productsRepository.js';
 import { Product } from '../models/product-model.js';
 
 
@@ -72,4 +72,28 @@ export async function newProductController (req, res, next) {
         next(err);
     }
 } 
+
+export const getProductController = async (req, res, next) => {
+    const productId = req.params.productId;
+
+    const title = "Detalle de producto";
+
+    const product = await getProduct(productId);
+    if(!product) {
+        next()
+        return;
+    }
+
+    res.render('product.html', {
+        title: title,
+        errorMessage: null,
+        values: {
+            _id: product._id,
+            productName: product.name,
+            //product.tags trae el array de tags por tanto en ejs preguntar tags.includes('tech') si lo incluye marcarlo checked.
+            tags: product.tags || [],
+            price: product.price
+        }
+    });
+}
 
