@@ -48,3 +48,18 @@ export async function getProduct(productId) {
     const product = Product.findById(productId);
     return product;
 }
+
+export async function editProduct(productId, details, ownerId) {
+   const product = await Product.findOneAndUpdate(
+    {
+        _id: productId,
+        owner: ownerId
+    },
+    {
+        $set: details
+    }
+   )
+
+   return product
+   console.log(product);
+}

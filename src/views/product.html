@@ -6,7 +6,7 @@
     <span>Id del producto: <%= values._id %></span>
 <% } %>
 
-<form method="POST" action=""  class="row g-3" style="margin-bottom: 5 px" action="/products<%= values._id %>" >
+<form method="POST" action="/products<%= values._id ? '/edit/' + values._id : '' %>"  class="row g-3" style="margin-bottom: 5 px"  >
     
     <% if (errorMessage) { %>
             <span><%= errorMessage %></span>

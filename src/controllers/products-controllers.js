@@ -1,4 +1,4 @@
-import { getProducts, saveNewProduct, getProduct } from '../data/productsRepository.js';
+import { getProducts, saveNewProduct, getProduct, editProduct } from '../data/productsRepository.js';
 import { Product } from '../models/product-model.js';
 
 
@@ -95,5 +95,47 @@ export const getProductController = async (req, res, next) => {
             price: product.price
         }
     });
+}
+
+export const editProductController = async (req, res, next) => {
+    const productId = req.params.productId;
+    const userId = req.session.userId;
+    const product = await getProduct(productId);
+    if(!product) {
+        next()
+        return;
+    }
+
+    const title = "Detalles del producto";
+
+    if(!req.body.name || req.body.price === ''){
+        const errorMessage = 'El nombre y precio del producto son obligatorios';
+        res.render('product.html', {
+            title: title,
+            errorMessage: errorMessage,
+            values: req.body
+        })
+        return
+    }
+
+    let tags = req.body.tags;
+    if(typeof tags === "string") {
+        tags = [tags]
+    }
+    if(!Array.isArray(tags)) {
+        throw new Error ("tags debe ser un array")
+    }
+
+    await editProduct(
+        productId, 
+        {
+        name: req.body.name,
+        price: req.body.price,
+        tags: tags,
+        },
+        userId
+    );
+    
+    res.redirect('/products');
 }
 
