@@ -76,7 +76,7 @@ export async function newProductController (req, res, next) {
 export const getProductController = async (req, res, next) => {
     const productId = req.params.productId;
 
-    const title = "Detalle de producto";
+    const title = "Detalles del producto";
 
     const product = await getProduct(productId);
     if(!product) {
