@@ -1,4 +1,4 @@
-import { getProducts, saveNewProduct, getProduct, editProduct } from '../data/productsRepository.js';
+import { getProducts, saveNewProduct, getProduct, editProduct, deleteProduct } from '../data/productsRepository.js';
 import { Product } from '../models/product-model.js';
 
 
@@ -6,11 +6,15 @@ import { Product } from '../models/product-model.js';
 
 export async function productsController (req, res, next) {
     const userId = req.session.userId;
-    const { tag, page, limit, name, priceMin, priceMax, sort} = req.query;
+    const { tag, name, priceMin, priceMax, sort} = req.query;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 4;
+
     let title = "Lista de productos";
 
     try {
         const products = await getProducts(userId, tag, limit, page, name, priceMin, priceMax, sort);
+        console.log(products);
         res.render('products.html', {
             title: title,
             products: products,
@@ -76,6 +80,9 @@ export async function newProductController (req, res, next) {
 export const getProductController = async (req, res, next) => {
     const productId = req.params.productId;
 
+    
+
+
     const title = "Detalles del producto";
 
     const product = await getProduct(productId);
@@ -100,7 +107,10 @@ export const getProductController = async (req, res, next) => {
 export const editProductController = async (req, res, next) => {
     const productId = req.params.productId;
     const userId = req.session.userId;
+
+
     const product = await getProduct(productId);
+
     if(!product) {
         next()
         return;
@@ -118,20 +128,12 @@ export const editProductController = async (req, res, next) => {
         return
     }
 
-    let tags = req.body.tags;
-    if(typeof tags === "string") {
-        tags = [tags]
-    }
-    if(!Array.isArray(tags)) {
-        throw new Error ("tags debe ser un array")
-    }
-
     await editProduct(
         productId, 
         {
         name: req.body.name,
         price: req.body.price,
-        tags: tags,
+        tags: req.body.tags
         },
         userId
     );
@@ -139,3 +141,29 @@ export const editProductController = async (req, res, next) => {
     res.redirect('/products');
 }
 
+
+export const deleteProductController = async (req, res, next) => {
+    const userId = req.session.userId;
+    const productId = req.params.productId;
+
+   
+
+    const product = await getProduct(productId);
+
+    if (!product) {
+        // Devolver 404
+        next();
+        return;
+    };
+
+    try {
+        const newProducts =  await deleteProduct(userId, productId)
+        if(newProducts.deletedCount === 0) {
+            return res.status(403).json({ error: "Not authorized" });
+        }
+        res.json(newProducts);
+    } catch (err) {
+        next(err);
+    }
+
+}

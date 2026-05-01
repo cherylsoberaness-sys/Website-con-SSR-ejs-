@@ -26,18 +26,20 @@ export async function getProducts(userId, tag=null, limit=4, page=1,
         filter.price = {$gte: Number(priceMin), $lte: Number(priceMax)}
     }
 
+
     const skip =  (page - 1) * limit; 
+    const product = await Product.findById('69f3c889797da2c1ea3a4d9e');
+    console.log(product);
+
+    
 
     return await Product.find(filter).skip(skip).limit(limit).sort(sort);
 
 }
 
 
-export async function saveNewProduct(product) {
-    if(product.tags && !Array.isArray(product.tags)){
-        product.tags = [product.tags]
-    }
 
+export async function saveNewProduct(product) {    
     const newProduct = new Product(product);
     await newProduct.save();
     return newProduct;
@@ -45,14 +47,14 @@ export async function saveNewProduct(product) {
 
 
 export async function getProduct(productId) {
-    const product = Product.findById(productId);
+    const product = await Product.findById(productId);
     return product;
 }
 
 export async function editProduct(productId, details, ownerId) {
    const product = await Product.findOneAndUpdate(
     {
-        _id: productId,
+        _id: productId,     
         owner: ownerId
     },
     {
@@ -62,4 +64,13 @@ export async function editProduct(productId, details, ownerId) {
 
    return product
    console.log(product);
+}
+
+
+
+export async function deleteProduct(userId, productId) {
+    return await Product.deleteOne({
+        _id: productId,
+        owner: userId
+    })
 }

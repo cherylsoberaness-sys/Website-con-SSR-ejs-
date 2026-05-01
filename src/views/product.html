@@ -51,10 +51,35 @@
         <label for="" class="">Precio:</label>
         <input type="" class="form-control" name="price" id="price" placeholder="$3000" value="<%= values.price ?? '' %>">
   </div>
-  <div class="">
+  <div class="form-btns">
     <button type="submit" class="btn btn-primary mb-3">Save product</button>
+    <% if (values._id) { %>
+        <button type="button" id="deleteBtn">Delete</button>
+    <% } %>
   </div>
 </form>
+<% if (values._id) { %>
+    <script>
+        const btnDelete = document.querySelector('#deleteBtn') 
+
+        const productId = "<%= values._id  %>"
+
+        btnDelete.addEventListener('click', () => {
+            const options = {
+                method: "DELETE",
+            }
+
+            fetch("/products/" + productId, options)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    window.location.href = '/products';
+                });
+        });
+
+    </script>
+<% } %>
+
 
 <%- include('partials/page-end.html') %>
 
