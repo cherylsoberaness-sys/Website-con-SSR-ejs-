@@ -7,36 +7,29 @@ export async function getProducts() {
     return result; 
 }*/
 
+export async function getProducts(userId, filterOptions) {
+    const { page, limit, sort} = filterOptions
 
-export async function getProducts(userId, tag=null, limit=4, page=1,
-    name=null, priceMin=null, priceMax=null, sort='name'
-) {
+    const filter = {
+        owner: userId
+    }
+    if (filterOptions.tag) {
+        filter.tags = filterOptions.tag;
+    }
+    if(filterOptions.name){
+        filter.name = { $regex: '^' + filterOptions.name, $options: 'i' };
+    }
+    if (filterOptions.priceMin || filterOptions.priceMax){
+        filter.price = {};
+        if(filterOptions.priceMin != null ) filter.price.$gte = filterOptions.priceMin;
+        if(filterOptions.priceMax != null ) filter.price.$lte = filterOptions.priceMax;  
+        //filter.price = {$gte: filterOptions.priceMin, $lte: filterOptions.priceMax}
+    }
     
-    const filter = { 
-        owner: userId,
-    }
-
-    if(tag){
-        filter.tags = tag;
-    }
-    if(name){
-        filter.name = { $regex: '^' + name, $options: 'i' };
-    }
-    if (priceMin || priceMax){
-        filter.price = {$gte: Number(priceMin), $lte: Number(priceMax)}
-    }
-
-
     const skip =  (page - 1) * limit; 
-    const product = await Product.findById('69f3c889797da2c1ea3a4d9e');
-    console.log(product);
-
-    
-
     return await Product.find(filter).skip(skip).limit(limit).sort(sort);
 
 }
-
 
 
 export async function saveNewProduct(product) {    
@@ -63,7 +56,6 @@ export async function editProduct(productId, details, ownerId) {
    )
 
    return product
-   console.log(product);
 }
 
 

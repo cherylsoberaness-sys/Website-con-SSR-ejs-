@@ -3,13 +3,13 @@ import { fileURLToPath } from 'node:url';
 import express from 'express';
 import morgan from 'morgan';
 import ejs from 'ejs';
-import nodemon from 'nodemon';
 
 import { utilitiesRouter } from './routes/utilities-router.js';
 import { pagesRouter } from './routes/pages-routes.js';
 import { productsRouter } from './routes/products-routes.js';
-import { guard, sessionInviews, sessionMiddleware } from './middleware/auth-middleware.js';
 import { authRouter } from './routes/auth-router.js';
+
+import { guard, sessionInviews, sessionMiddleware } from './middleware/auth-middleware.js';
 
 
 //inicializamos la app de express:
@@ -20,6 +20,11 @@ const appDir = dirname(fileURLToPath(import.meta.url));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(join(appDir, '../public')));
 app.use(morgan('tiny'));
+
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store');
+    next();
+});
 
 //Auth middlewares
 app.use(sessionMiddleware);
@@ -41,7 +46,7 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
     console.log(err);
-    res.status(500).send('Error interno del servidor');
+    res.status(err.status || 500).send(err.message || 'Something failed!');
 });
 
 
