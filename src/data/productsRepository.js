@@ -44,14 +44,14 @@ export async function getProduct(productId) {
     return product;
 }
 
-export async function editProduct(productId, details, ownerId) {
+export async function editProduct(productId, updateData, ownerId) {
    const product = await Product.findOneAndUpdate(
     {
         _id: productId,     
         owner: ownerId
     },
     {
-        $set: details
+        $set: updateData
     }
    )
 

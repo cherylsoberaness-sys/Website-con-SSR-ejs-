@@ -7,7 +7,9 @@ import { Product } from '../models/product-model.js';
 export async function productsController (req, res, next) {
     const userId = req.session.userId;
 
-    let title = "Lista de productos";
+    const title = "Lista de productos";
+
+    const tags = ['tech', 'work', 'productivity', 'lifestyle', 'motor', 'mobile'];
 
     const filterOptions = {
         tag: req.query.tag,
@@ -23,13 +25,14 @@ export async function productsController (req, res, next) {
         const products = await getProducts(userId, filterOptions);
         res.render('products.html', {
             title: title,
+            tags: tags,
             products: products,
             tag: filterOptions.tag,
             page: filterOptions.page,
             name: filterOptions.name,
             priceMin: filterOptions.priceMin,
             priceMax: filterOptions.priceMax,
-            sort: filterOptions.sort 
+            sort: filterOptions.sort
         });
     }
     catch (err){

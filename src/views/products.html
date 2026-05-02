@@ -3,29 +3,16 @@
     <div class="container mt-4">
         <h1>Lista de productos</h1>
         <%- include('partials/components/filter-components.html') %>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/products?tag=tech">Tech</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products?tag=work">Work</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products?tag=productivity">Productivity</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products?tag=comfort">Comfort</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products?tag=accessories">Accessories</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products?tag=gaming">Gaming</a>
-            </li>
+        <ul class="nav gap-3">
+            <% tags.forEach((tag) => { %>
+                <li class="nav-item">
+                    <a class="nav-link badge text-bg-secondary" href="/products?tag=<%= tag %>"><%= tag %></a>
+                </li>
+            <% }) %>
         </ul>
         <% if (products.length > 0) { %>
             <ul class="list-group">
-                <% products.forEach((product, index) => { %>
+                <% products.forEach((product) => { %>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold"><%= product.name %></div>
@@ -35,13 +22,12 @@
                             <% if (product.tags && product.tags.length > 0) { %>
                                 <small>
                                     <% product.tags.forEach((tag) => { %>
-                                        <%-// include( 'partials/components/tags-component.html', { tag: tag } ) %>
                                         <a href="/products?tag=<%= tag %>"><span class="badge text-bg-secondary"><%= tag  %></span></a> 
                                     <% }) %>
                                 </small>
                             <% } %>
                         </div>
-                        <span class="badge text-bg-primary rounded-pill"><%= index + 1 %></span>
+                        
                     </li>
             
             <% }) %>
