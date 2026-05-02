@@ -5,27 +5,15 @@
 
 Desarrollo de aplicación backend con interfaz gráfica para comprender a profundidad la comunicación cliente-servidor, el funcionamiento de HTTP y la construcción de APIs siguiendo el patrón MVC (Modelo-Vista-Controlador).
 
-La aplicación permite gestionar productos a través de endpoints que soportan filtrado, ordenamiento y paginación, manteniendo el estado de la consulta directamente en la URL.
-
+La aplicación permite gestionar productos a través de endpoints que soportan filtrado, ordenamiento y paginación.
 ---
 
 ## 🔹 Tecnologías utilizadas
 
 - Node.js + Express  
 - MongoDB Atlas + Mongoose  
-- EJS para renderizado de vistas  
-
----
-
-## 🔹 Ejemplo de endpoints
-
-- GET `/products` → obtener todos los productos  
-- GET `/products?tag=comfort` → filtrar por categoría  
-- GET `/products?tag=comfort&sort=name` → filtrar y ordenar  
-- GET `/products/:productId` → obtener un producto específico  
-- POST `/products` → crear un nuevo producto  
-- PUT `/products/:productId` → actualizar un producto  
-
+- EJS para renderizado de vistas
+- Bootstrap
 ---
 
 ## 🔹 Flujo de la aplicación
@@ -40,7 +28,9 @@ petición → middleware → rutas → controlador → repositorio (BD) → resp
 - Filtros por tag, nombre y rango de precio  
 - Ordenamiento dinámico  
 - Paginación  
-- Persistencia del estado en la URL  
+- Persistencia del estado en la URL
+- Autenticación de usuarios
+- Manejo de operaciones protegidas por usuario (CRUD de productos relacionado al owner).
 
 ---
 
