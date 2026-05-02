@@ -28,7 +28,9 @@ petición → middleware → rutas → controlador → repositorio (BD) → resp
 - Filtros por tag, nombre y rango de precio  
 - Ordenamiento dinámico  
 - Paginación  
-- Persistencia del estado en la URL  
+- Persistencia del estado en la URL
+- Autenticación de usuarios
+- Manejo de operaciones protegidas por usuario (CRUD de productos relacionado al owner).
 
 ---
 
