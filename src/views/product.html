@@ -1,63 +1,65 @@
 <%- include('partials/page-start.html') %>
 
+<div class="container mt-4 d-flex justify-content-center">
+    <div style="max-width: 600px; width: 100%;">
+        <h1><%= title %></h1>
+        <% if (values._id) { %>
+            <span>Id del producto: <%= values._id %></span>
+        <% } %>
 
-<h1><%= title %></h1>
-<% if (values._id) { %>
-    <span>Id del producto: <%= values._id %></span>
-<% } %>
-
-<form method="POST" action="/products<%= values._id ? '/edit/' + values._id : '' %>"  class="row g-3" style="margin-bottom: 5 px"  >
-    
-    <% if (errorMessage) { %>
-            <span><%= errorMessage %></span>
-    <% } %>
-    <div class="">
-        <label for="" class="">Nombre de producto:</label>
-        <input type="text" id="name" class="form-control" name="name" placeholder="Bocinas Logitech" value="<%= values.productName ?? '' %>">
+        <form method="POST" action="/products<%= values._id ? '/edit/' + values._id : '' %>"  class="row g-3" style="margin-bottom: 5 px"  >    
+            <% if (errorMessage) { %>
+                    <span><%= errorMessage %></span>
+            <% } %>
+            <div class="">
+                <label for="" class="">Nombre de producto:</label>
+                <input type="text" id="name" class="form-control" name="name" placeholder="Bocinas Logitech" value="<%= values.productName ?? '' %>">
+            </div>
+            <div class="d-flex gap-2" style="width: 200px">
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tags" value="gaming" <%= values.tags && values.tags.includes('gaming') ? 'checked' : '' %> >
+                        <label class="form-check-label">gaming</label>                                  
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tags" value="comfort" <%= values.tags && values.tags.includes('comfort') ? 'checked' : '' %> >
+                        <label class="form-check-label">comfort</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tags" value="lyfestyle" <%= values.tags && values.tags.includes('lyfestyle') ? 'checked' : '' %>>
+                        <label class="form-check-label">lyfestyle</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tags" value="work" <%= values.tags && values.tags.includes('work') ? 'checked' : '' %>>
+                        <label class="form-check-label">work</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tags" value="tech" <%= values.tags && values.tags.includes('tech') ? 'checked' : '' %>>
+                        <label class="form-check-label">tech</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tags" value="productivity" <%= values.tags && values.tags.includes('productivity') ? 'checked' : '' %>>
+                        <label class="form-check-label">productivity</label>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <label for="" class="">Precio:</label>
+                <input type="" class="form-control" name="price" id="price" placeholder="$3000" value="<%= values.price ?? '' %>">
+            </div>
+            <div class="form-btns">
+                <button type="submit" class="btn btn-primary mb-3">Save product</button>
+                <% if (values._id) { %>
+                    <button class="btn btn-primary mb-3" type="button" id="deleteBtn">Delete</button>
+                <% } %>
+            </div>
+        </form>
     </div>
-    <div class="d-flex gap-2" style="width: 200px">
-        <div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="gaming" <%= values.tags && values.tags.includes('gaming') ? 'checked' : '' %> >
-                <label class="form-check-label">gaming</label>                                  
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="comfort" <%= values.tags && values.tags.includes('comfort') ? 'checked' : '' %> >
-                <label class="form-check-label">comfort</label>
-            </div>
-        </div>
-        <div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="lyfestyle" <%= values.tags && values.tags.includes('lyfestyle') ? 'checked' : '' %>>
-                <label class="form-check-label">lyfestyle</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="work" <%= values.tags && values.tags.includes('work') ? 'checked' : '' %>>
-                <label class="form-check-label">work</label>
-            </div>
-        </div>
-        <div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="tech" <%= values.tags && values.tags.includes('tech') ? 'checked' : '' %>>
-                <label class="form-check-label">tech</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="tags" id="tags" value="productivity" <%= values.tags && values.tags.includes('productivity') ? 'checked' : '' %>>
-                <label class="form-check-label">productivity</label>
-            </div>
-        </div>
-    </div>
-    <div class="">
-        <label for="" class="">Precio:</label>
-        <input type="" class="form-control" name="price" id="price" placeholder="$3000" value="<%= values.price ?? '' %>">
-  </div>
-  <div class="form-btns">
-    <button type="submit" class="btn btn-primary mb-3">Save product</button>
-    <% if (values._id) { %>
-        <button type="button" id="deleteBtn">Delete</button>
-    <% } %>
-  </div>
-</form>
+</div>
 <% if (values._id) { %>
     <script>
         const btnDelete = document.querySelector('#deleteBtn') 

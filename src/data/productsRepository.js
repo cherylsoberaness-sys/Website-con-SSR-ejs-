@@ -7,6 +7,11 @@ export async function getProducts() {
     return result; 
 }*/
 
+export async function getOwnerName(userId) {
+    const user = await User.findById(userId);
+    return user.name;
+}
+
 export async function getProducts(userId, filterOptions) {
     const { page, limit, sort} = filterOptions
 

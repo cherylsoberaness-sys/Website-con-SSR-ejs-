@@ -1,4 +1,4 @@
-import { getProducts, saveNewProduct, getProduct, editProduct, deleteProduct } from '../data/productsRepository.js';
+import { getProducts, saveNewProduct, getProduct, editProduct, deleteProduct, getOwnerName } from '../data/productsRepository.js';
 import { Product } from '../models/product-model.js';
 
 
@@ -10,6 +10,8 @@ export async function productsController (req, res, next) {
     const title = "Lista de productos";
 
     const tags = ['tech', 'work', 'productivity', 'lifestyle', 'motor', 'mobile'];
+
+    const nameOwner = await getOwnerName(userId);
 
     const filterOptions = {
         tag: req.query.tag,
@@ -32,7 +34,8 @@ export async function productsController (req, res, next) {
             name: filterOptions.name,
             priceMin: filterOptions.priceMin,
             priceMax: filterOptions.priceMax,
-            sort: filterOptions.sort
+            sort: filterOptions.sort,
+            ownerName: nameOwner
         });
     }
     catch (err){
@@ -45,10 +48,13 @@ export async function productsController (req, res, next) {
 export function newProductController (req, res, next) {
     let title = "Crear nuevo producto";
 
+    const tags = ['gaming', 'lifestyle', 'tech', 'comfort', 'work', 'productivity']
+
     res.render('product.html', {
         title: title,
         errorMessage: null,
         values: {},
+        tags: tags
     });
 
 }
@@ -57,6 +63,7 @@ export async function createProductController (req, res, next) {
     const userId = req.session.userId;
     //const { name, tags, price} =  req.query;
     const title = "Crear nuevo producto";
+    
 
     if(!req.body.name || req.body.price === ''){
         const errorMessage = 'El nombre y precio del producto son obligatorios';
@@ -64,8 +71,19 @@ export async function createProductController (req, res, next) {
             title: title,
             errorMessage: errorMessage,
             values: req.body
-        })
-        return
+        });
+        return;
+    }
+
+    const price = Number(req.body.price);
+    if(isNaN(price) || price <= 0){
+        const errorMessage = 'El precio es inválido, debe ser un número mayor a 0';
+        res.render('product.html', {
+            title: title,
+            errorMessage: errorMessage,
+            values: req.body
+        });
+        return;
     }
 
     const newProduct = { 

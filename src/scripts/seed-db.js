@@ -48,7 +48,7 @@ async function seedProducts() {
             name: 'MacBook Air M1', 
             price: 18000, 
             owner: ed._id,
-            tags: ['tech', 'laptop', 'work']
+            tags: ['tech', 'laptop', 'work', 'lifestyle']
         },
         { 
             name: 'Teclado Mecánico Keychron', 

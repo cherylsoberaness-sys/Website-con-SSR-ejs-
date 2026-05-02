@@ -18,7 +18,7 @@
                             <div class="fw-bold"><%= product.name %></div>
                             $<%= product.price %> <br>
                             <a href="/products/<%=product._id%>"><small><%= product._id %></small><br></a>
-                            <!--<small>Owner Id: <%= product.owner %></small><br>-->
+                            <small>Owner: <%= ownerName %></small><br>
                             <% if (product.tags && product.tags.length > 0) { %>
                                 <small>
                                     <% product.tags.forEach((tag) => { %>
