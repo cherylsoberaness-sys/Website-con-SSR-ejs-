@@ -40,7 +40,7 @@ petición → middleware → rutas → controlador → repositorio (BD) → resp
 - Separación de responsabilidades con MVC  
 - Modelado y acceso a datos con Mongoose  
 
-## 🚀 Cómo ejecutar el proyecto
+## Cómo ejecutar el proyecto
 
 Clonar el repositorio:
 
