@@ -8,7 +8,7 @@ Desarrollo de aplicación backend con interfaz gráfica para comprender a profun
 La aplicación permite gestionar productos a través de endpoints que soportan filtrado, ordenamiento y paginación.
 ---
 
-## 🔹 Tecnologías utilizadas
+##  Tecnologías utilizadas
 
 - Node.js + Express  
 - MongoDB Atlas + Mongoose  
@@ -16,13 +16,13 @@ La aplicación permite gestionar productos a través de endpoints que soportan f
 - Bootstrap
 ---
 
-## 🔹 Flujo de la aplicación
+##  Flujo de la aplicación
 
 petición → middleware → rutas → controlador → repositorio (BD) → respuesta → vista (EJS)
 
 ---
 
-## 🔹 Funcionalidades implementadas
+##  Funcionalidades implementadas
 
 - CRUD de productos  
 - Filtros por tag, nombre y rango de precio  
@@ -34,13 +34,13 @@ petición → middleware → rutas → controlador → repositorio (BD) → resp
 
 ---
 
-## 🔹 Aprendizajes clave
+##  Aprendizajes clave
 
 - Manejo de rutas y middlewares en Express  
 - Separación de responsabilidades con MVC  
 - Modelado y acceso a datos con Mongoose  
 
-## 🚀 Cómo ejecutar el proyecto
+## Cómo ejecutar el proyecto
 
 Clonar el repositorio:
 
