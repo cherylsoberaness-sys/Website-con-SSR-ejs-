@@ -9,6 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch --env-file=.env src/bin/www.js",
+    "start": "node --env-file=.env src/bin/www.js",
     "test:database": "node --env-file=.env src/lib/database.js",
     "initDB": "node --env-file=.env src/scripts/seed-db.js"
   },
