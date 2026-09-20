@@ -93,6 +93,8 @@ http://127.0.0.1:3000
 
 https://nodepopp.duckdns.org/
 
+Nginx sirve los archivos estáticos que se encuentran en este repositorio en la carpeta de public para Nodepop.
+
 ### Dirección IP
 
 http://3.84.155.149
