@@ -84,7 +84,7 @@ http://127.0.0.1:3000
 
 ### Usuarios de prueba para la app
 
-correo: 'ed@nd.io', contraseña: 112345454
+correo: 'ed@nd.io', contraseña: 112345454,
 correo: 'Ss@nd.io', contraseña: 1232498349
 
 # Práctica despliegue de servidores 
