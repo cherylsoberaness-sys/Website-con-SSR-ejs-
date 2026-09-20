@@ -103,6 +103,8 @@ http://3.84.155.149
 
 https://bookshop.nodepopp.duckdns.org
 
+Instrucciones para usar Bookshop API:
+https://github.com/cherylsoberaness-sys/bookshop-api.git
 
 
 
