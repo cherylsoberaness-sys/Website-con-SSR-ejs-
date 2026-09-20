@@ -81,3 +81,22 @@ npm run dev
 ```
 Abrir en el navegador:
 http://127.0.0.1:3000
+
+# Práctica despliegue de servidores 
+
+### Nodepop desplegado
+
+https://nodepopp.duckdns.org/
+
+### Dirección IP
+
+http://3.84.155.149
+
+### Bookshop API desplegada con docker
+
+https://bookshop.nodepopp.duckdns.org
+
+
+
+
+
